@@ -12,11 +12,12 @@ function TodoInput({ onSubmit }) {
       [e.target.name]: e.target.value
     });
   };
-  const onAdd = () => {
+  const onFormSubmit = (e) => {
+    e.preventDefault();
     onSubmit(state);
   };
   return (
-    <div>
+    <form onSubmit={(e) => onFormSubmit(e)}>
       <div style={{ padding: 4 }}>
         <input
           placeholder="title"
@@ -33,8 +34,8 @@ function TodoInput({ onSubmit }) {
           onChange={handleInputChange}
         />
       </div>
-      <button onClick={onAdd}>Add</button>
-    </div>
+      <input type="submit" value="ADD" />
+    </form>
   );
 }
 

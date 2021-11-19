@@ -18,20 +18,20 @@
   flex-direction: column;
 }
 
-.App > div > div {
+.App > div > form {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
 }
 
-input {
+form > div > input {
   border: none;
   border-radius: 0.5rem;
   min-width: 200px;
   min-height: 30px;
 }
 
-button {
+input[type="submit"] {
   cursor: pointer;
   height: 32px;
   width: 50px;

@@ -4,13 +4,14 @@ import TodoList from "./TodoList";
 
 function Todo() {
   const [list, setList] = useState([]);
+  const [showCompleted, setShowCompleted] = useState(false);
 
   const handleSubmit = ({ title, description }) => {
     const payload = {
       id: list.length + 1,
       title,
       description,
-      status: true
+      status: list.length % 2 === 0 ? true : false
     };
     setList([...list, payload]);
   };
@@ -30,10 +31,24 @@ function Todo() {
     <div>
       <TodoInput onSubmit={handleSubmit} />
       <TodoList
-        data={list}
+        data={list.filter((item) => !item.status)}
         handleDelete={handleDelete}
         handleToggle={handleToggle}
       />
+      {
+        <div>
+          <button onClick={() => setShowCompleted(!showCompleted)}>
+            Toggle Show Completed
+          </button>
+        </div>
+      }
+      {showCompleted && (
+        <TodoList
+          data={list.filter((item) => item.status)}
+          handleDelete={handleDelete}
+          handleToggle={handleToggle}
+        />
+      )}
     </div>
   );
 }
